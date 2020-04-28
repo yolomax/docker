@@ -53,10 +53,11 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list &&
     $CONDA_INSTALL \
         python=3.7 && \
     $CONDA_INSTALL \
+        pytorch=0.4.0 -c soumith  && \
+    $CONDA_INSTALL \
         ipython \
         Cython \
         ffmpeg \
-        pytorch \
         visdom \
         sk-video \
         imageio \
