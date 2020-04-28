@@ -3,8 +3,7 @@ FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
 ENV PATH /opt/conda/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
 
-RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
-    APT_INSTALL="apt-get install -y --no-install-recommends" && \
+RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     PIP_INSTALL="python -m pip --no-cache-dir install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple" && \
     GIT_CLONE="git clone --depth 10" && \
     CONDA_INSTALL="conda install -y" && \
