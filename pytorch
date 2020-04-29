@@ -52,8 +52,6 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         Cython \
         ffmpeg \
         pytorch \
-        visdom \
-        sk-video \
         imageio \
         h5py \
         tensorboard \
@@ -64,6 +62,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         && \
     $PIP_INSTALL \
         lmdb \
+        visdom \
         opencv-python \
         opencv-contrib-python \
         Pillow \
