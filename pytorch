@@ -46,7 +46,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # ------------------------------------------------------------------
     conda config --set show_channel_urls yes && \
     $CONDA_INSTALL \
-        python=3.8 && \
+        python=3.7 && \
     $CONDA_INSTALL \
         ipython \
         Cython \
