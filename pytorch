@@ -1,10 +1,10 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
 ENV PATH /opt/conda/bin:$PATH
-ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/local/cuda-10.2/lib64:$LD_LIBRARY_PATH
 
 RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
-    PIP_INSTALL="python -m pip --no-cache-dir install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple" && \
+    PIP_INSTALL="python -m pip --no-cache-dir install --upgrade && \
     GIT_CLONE="git clone --depth 10" && \
     CONDA_INSTALL="conda install -y" && \
     rm -rf /var/lib/apt/lists/* \
@@ -45,12 +45,8 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # conda
 # ------------------------------------------------------------------
     conda config --set show_channel_urls yes && \
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && \
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && \
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/ && \
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/ && \
     $CONDA_INSTALL \
-        python=3.7 && \
+        python=3.8 && \
     $CONDA_INSTALL \
         ipython \
         Cython \
