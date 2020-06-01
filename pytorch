@@ -85,5 +85,11 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     ldconfig && \
     apt-get clean && \
     apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/* /tmp/* ~/*
+    rm -rf /var/lib/apt/lists/* /tmp/* ~/* && \
+# ==================================================================
+# add a user for test 
+# ------------------------------------------------------------------
+    useradd -m -s /bin/bash -G users,video yolo && passwd 10086
 EXPOSE 6006
+VOLUME /data
+CMD ["/bin/bash"]
