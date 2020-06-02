@@ -1,4 +1,7 @@
-FROM pytorch/pytorch:1.5-cuda10.1-cudnn7-runtim
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+
+ENV PATH /opt/conda/bin:$PATH
+ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/local/cuda-10.1/lib64:$LD_LIBRARY_PATH
 
 RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     PIP_INSTALL="python -m pip --no-cache-dir install --upgrade" && \
@@ -31,29 +34,46 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         libxext6 \
         libxrender-dev \
         && \
+# ==================================================================
+# miniconda
+# ------------------------------------------------------------------
+    wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+        /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+        rm ~/miniconda.sh && \
+        #echo "export PATH=/opt/conda/bin:$PATH" >> ~/.bashrc && \
+# ==================================================================
+# conda
+# ------------------------------------------------------------------
     conda config --set show_channel_urls yes && \
     $CONDA_INSTALL \
+        python=3.7 && \
+    $CONDA_INSTALL \
+        ipython \
         Cython \
         ffmpeg \
+        pytorch \
+        imageio \
         h5py \
+        tensorboard \
         torchvision \
         future \
         pyyaml \
         cffi \
-        Pillow \
-        six \
-        scipy \
-        matplotlib \
-        tqdm \
-        scikit-learn \
         && \
-    conda install -c conda-forge python-lmdb && \
     $PIP_INSTALL \
+        lmdb \
         visdom \
         opencv-python \
         opencv-contrib-python \
+        Pillow \
+        six \
+        scipy \
         munkres \
         nibabel \
+        pandas \
+        matplotlib \
+        tqdm \
+        scikit-learn \
         pytest \
         wget \
         gym \
@@ -70,8 +90,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # add a user for test 
 # ------------------------------------------------------------------
     pass=$(perl -e 'print crypt($ARGV[0], "password")' "10086") && \
-    useradd -m -s /bin/bash -G users,video -p $pass yolo && \
-    /etc/init.d/ssh restart 
+    useradd -m -s /bin/bash -G users,video -p $pass yolo
 EXPOSE 6006
 VOLUME /data
 CMD ["/bin/bash"]
