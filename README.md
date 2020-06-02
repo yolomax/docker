@@ -1,6 +1,6 @@
 # docker
 
-基础镜像：nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+基础镜像：pytorch/pytorch:1.5-cuda10.1-cudnn7-runtim
 cuda 10.1
 
 python 3.7
