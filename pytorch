@@ -70,8 +70,8 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # add a user for test 
 # ------------------------------------------------------------------
     pass=$(perl -e 'print crypt($ARGV[0], "password")' "10086") && \
-    useradd -m -s /bin/bash -G users,video -p $pass yolo && \
-    /etc/init.d/ssh restart 
+    useradd -m -s /bin/bash -G users,video -p $pass yolo
+
 EXPOSE 6006
 VOLUME /data
 CMD ["/bin/bash"]
