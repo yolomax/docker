@@ -73,5 +73,4 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     useradd -m -s /bin/bash -G users,video -p $pass yolo
 
 EXPOSE 6006
-VOLUME /data
 CMD ["/bin/bash"]
