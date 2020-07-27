@@ -46,6 +46,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         matplotlib \
         tqdm \
         scikit-learn \
+        seaborn \
         && \
     conda install -c conda-forge python-lmdb && \
     $PIP_INSTALL \
