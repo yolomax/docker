@@ -77,9 +77,8 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # ==================================================================
 # enable ssh 
 # ------------------------------------------------------------------
-    echo '/etc/init.d/ssh start' >> /etc/rc.local && \
-    echo 'exit 0' >> /etc/rc.local && \
-    chmod +x /etc/rc.local && \
+    mkdir /run/ssh && \
+    chmod -R 777 /run/ssh && \
 # ==================================================================
 # enable a user using conda install 
 # ------------------------------------------------------------------
