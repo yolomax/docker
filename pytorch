@@ -17,7 +17,6 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         ca-certificates \
         cmake \
         wget \
-        sudo \ 
         git \
         vim \
         htop \
@@ -74,6 +73,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # ------------------------------------------------------------------
     pass=$(perl -e 'print crypt($ARGV[0], "password")' "10086") && \
     useradd -m -s /bin/bash -G users,video -p $pass yolo
+    systemctl enable ssh
     
 
 EXPOSE 6006
