@@ -73,6 +73,11 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # ------------------------------------------------------------------
     pass=$(perl -e 'print crypt($ARGV[0], "password")' "10086") && \
     useradd -m -s /bin/bash -G users,video -p $pass yolo
+# ==================================================================
+# add conda permissions to all users
+# ------------------------------------------------------------------
+    chmod -R 777 /opt/conda
+    
 
 EXPOSE 6006
 CMD ["/bin/bash"]
