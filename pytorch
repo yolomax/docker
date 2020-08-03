@@ -79,6 +79,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # ------------------------------------------------------------------
     mkdir /run/sshd && \
     chmod -R 777 /run/sshd && \
+    chmod -R 777 /etc/ssh && \
 # ==================================================================
 # enable a user using conda install 
 # ------------------------------------------------------------------
