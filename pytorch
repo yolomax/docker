@@ -37,7 +37,6 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         Cython \
         ffmpeg \
         h5py \
-        torchvision \
         future \
         pyyaml \
         cffi \
