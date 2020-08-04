@@ -16,6 +16,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         build-essential \
         ca-certificates \
         cmake \
+        sudo \
         wget \
         git \
         vim \
@@ -70,22 +71,13 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* /tmp/* ~/* && \
 # ==================================================================
-# add a user for test 
+# enable all users using sudo 
 # ------------------------------------------------------------------
-    pass=$(perl -e 'print crypt($ARGV[0], "password")' "10086") && \
-    useradd -m -s /bin/bash -G users,video -p $pass yolo && \
-# ==================================================================
-# enable ssh 
-# ------------------------------------------------------------------
-    mkdir /run/sshd && \
-    chmod -R 777 /run/sshd && \
-    chmod -R 777 /etc/ssh && \
-# ==================================================================
-# enable a user using conda install 
-# ------------------------------------------------------------------
-    chmod -R 777 /opt/conda && \
-    mkdir /.conda && \
-    chmod -R 777 /.conda
+    cp /etc/sudoers /etc/sudoers.new && \
+    echo "%users  ALL=(ALL:ALL) ALL" >> /etc/sudoers.new  && \
+    visudo -c -f /etc/sudoers.new && \
+    cp /etc/sudoers.new /etc/sudoers  && \
+    rm /etc/sudoers.new
     
 
 EXPOSE 6006
