@@ -54,6 +54,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         opencv-python \
         opencv-contrib-python \
         metric-learn\
+        prettytable \
         munkres \
         nibabel \
         pytest \
