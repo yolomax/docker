@@ -47,19 +47,24 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         tqdm \
         scikit-learn \
         seaborn \
+        tabulate \
+        portalocker \
         && \
-    conda install -c conda-forge python-lmdb && \
-    $PIP_INSTALL \
+    $CONDA_INSTALL -c conda-forge \
         visdom \
-        opencv-python \
-        opencv-contrib-python \
-        metric-learn\
+        python-lmdb \
+        metric-learn \
         prettytable \
-        munkres \
         nibabel \
         pytest \
         wget \
         gym \
+        yacs \
+        && \
+    $PIP_INSTALL \
+        opencv-python \
+        opencv-contrib-python \
+        munkres \
         && \
     conda clean -y --all && \
     visdom & sleep 180s ; kill $!  && \
