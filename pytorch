@@ -33,6 +33,10 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         libxrender-dev \
         && \
     conda config --set show_channel_urls yes && \
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && \
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && \
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/ && \
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/ && \
     $CONDA_INSTALL \
         Cython \
         ffmpeg \
@@ -49,8 +53,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         seaborn \
         tabulate \
         portalocker \
-        && \
-    $CONDA_INSTALL -c conda-forge \
+        termcolor \ 
         visdom \
         python-lmdb \
         metric-learn \
