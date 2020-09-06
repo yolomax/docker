@@ -33,8 +33,8 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         libxrender-dev \
         && \
     conda config --set show_channel_urls yes && \
-    conda config --append channels conda-forge && \
-    conda config --append channels pytorch && \
+  #  conda config --append channels conda-forge && \
+  #  conda config --append channels pytorch && \
     $CONDA_INSTALL \
         Cython \
         ffmpeg \
@@ -48,6 +48,10 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         matplotlib \
         tqdm \
         scikit-learn \
+        && \
+    $PIP_INSTALL \
+        opencv-python \
+        opencv-contrib-python \
         seaborn \
         tabulate \
         portalocker \
@@ -61,10 +65,6 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         wget \
         gym \
         yacs \
-        && \
-    $PIP_INSTALL \
-        opencv-python \
-        opencv-contrib-python \
         munkres \
         && \
     conda clean -y --all && \
