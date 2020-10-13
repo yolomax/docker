@@ -1,0 +1,43 @@
+FROM jekyll/jekyll:latest
+
+RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
+    GIT_CLONE="git clone --depth 10" && \
+    rm -rf /var/lib/apt/lists/* \
+    apt-get update && \
+# ==================================================================
+# tools
+# ------------------------------------------------------------------
+    DEBIAN_FRONTEND=noninteractive $APT_INSTALL \
+        apt-utils \
+        build-essential \
+        ca-certificates \
+        cmake \
+        sudo \
+        wget \
+        git \
+        vim \
+        htop \
+        tmux \
+        openssh-client \
+        openssh-server \
+        libboost-dev \
+        libboost-thread-dev \
+        libboost-filesystem-dev \
+        libglib2.0-0 \
+        libsm6 \
+        libxext6 \
+        libxrender-dev \
+        && \
+    gem install jekyll-gist && \
+# ==================================================================
+# config & cleanup
+# ------------------------------------------------------------------
+    ldconfig && \
+    apt-get clean && \
+    apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/* /tmp/* ~/* && \
+    gem cleanup && \
+    
+
+EXPOSE 4000
+CMD ["/bin/bash"]
