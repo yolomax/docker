@@ -49,6 +49,8 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         tqdm \
         scikit-learn \
         pylint \
+        jupyter \
+        notebook \
         && \
     conda install -c conda-forge python-lmdb && \
     $PIP_INSTALL \
