@@ -80,10 +80,10 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* /tmp/* ~/* && \
 # ==================================================================
-# enable all users using sudo 
+# enable all docker users using sudo 
 # ------------------------------------------------------------------
     cp /etc/sudoers /etc/sudoers.new && \
-    echo "%users  ALL=(ALL:ALL) ALL" >> /etc/sudoers.new  && \
+    echo "%docker  ALL=(ALL:ALL) ALL" >> /etc/sudoers.new  && \
     visudo -c -f /etc/sudoers.new && \
     cp /etc/sudoers.new /etc/sudoers  && \
     rm /etc/sudoers.new
